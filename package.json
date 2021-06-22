@@ -1,12 +1,12 @@
 {
-  "name": "vue-form-create",
-  "description": "一个基于Vue3.0 + TS 的表单设计器",
-  "version": "1.2.2",
+  "name": "vue-form-create-puls",
+  "description": "一个基于Vue3.0 + TS 的表单设计器(更改版)",
+  "version": "0.0.3",
   "main": "dist/formCreate.umd.min.js",
   "types": "src/index.d.ts",
   "homepage": "https://github.com/wzx-3015/vue-form-create-puls",
   "author": {
-    "name": "fuchengwei"
+    "name": "wzx"
   },
   "keywords": [
     "Form",

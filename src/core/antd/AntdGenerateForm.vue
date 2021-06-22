@@ -2,7 +2,7 @@
  * @Description: 请输入当前文件描述
  * @Author: @Xin (834529118@qq.com)
  * @Date: 2021-06-21 18:29:36
- * @LastEditTime: 2021-06-22 11:39:24
+ * @LastEditTime: 2021-06-22 13:48:27
  * @LastEditors: @Xin (834529118@qq.com)
 -->
 <template>
@@ -56,7 +56,7 @@
                 </a-button>
               </div>
             </a-col>
-            <a-button v-if="element.dynamic" type="dashed" block @click="handleAdd(element)">
+            <a-button class="group-add-btn" v-if="element.dynamic" type="dashed" block @click="handleAdd(element)">
               <template #icon>
                 <PlusOutlined />
               </template>
