@@ -2,7 +2,7 @@
  * @Description: 请输入当前文件描述
  * @Author: @Xin (834529118@qq.com)
  * @Date: 2021-06-21 18:29:36
- * @LastEditTime: 2021-06-22 13:48:27
+ * @LastEditTime: 2021-06-22 18:44:37
  * @LastEditors: @Xin (834529118@qq.com)
 -->
 <template>
@@ -21,34 +21,42 @@
             type="flex"
             v-if="element.key"
             :key="element.key"
-            :gutter="element.options.gutter ?? 0"
-            :justify="element.options.justify"
-            :align="element.options.align"
           >
             <a-col
-              v-for="(col, colIndex) of element.columns"
-              :key="colIndex"
-              :span="col.span ?? 0"
+              :span="24"
+              v-for="(row, rowIndex) of element.columns"
+              :key="element.key + rowIndex"
               :class="{
                 'custom-group': element.dynamic
-              }"
-            >
-              <div class="group-content">
-                <AntdGenerateFormItem
-                  v-for="colItem of col.list"
-                  v-model:model="model"
-                  :key="colItem.key"
-                  :element="colItem"
-                  :config="data.config"
-                  :disabled="disabled"
-                />
-              </div>
+              }">
+              <a-row
+                type="flex"
+                :gutter="element.options.gutter ?? 0"
+                :justify="element.options.justify"
+                :align="element.options.align"
+                class="group-content"
+              >
+                <a-col
+                  v-for="(col, colIndex) of row"
+                  :key="colIndex"
+                  :span="col.span ?? 0"
+                >
+                  <AntdGenerateFormItem
+                    v-for="colItem of col.list"
+                    v-model:model="model"
+                    :key="colItem.key"
+                    :element="colItem"
+                    :config="data.config"
+                    :disabled="disabled"
+                  />
+                </a-col>
+              </a-row>
               <div class="group-operation" v-if="element.dynamic && element.columns.length > 1">
                 <a-button
                   shape="circle"
                   type="dashed"
-                  :disabled="colIndex === 0"
-                  @click="handleReomveGroup(index, colIndex)"
+                  :disabled="rowIndex === 0"
+                  @click="handleReomveGroup(index, rowIndex)"
                 >
                   <template #icon>
                     <MinusOutlined />
@@ -126,7 +134,7 @@ export default defineComponent({
           if (typeList.includes(v.type)) {
             return {
               ...v,
-              columns: handleWidgetFormColumnsList(v.columns)
+              columns: [handleWidgetFormColumnsList(v.columns)]
             }
           } else if (!excludeTypeList.includes(v.type)) {
             return {
@@ -159,7 +167,7 @@ export default defineComponent({
           return
         }
         if (list[index].type === 'grid') {
-          list[index].columns.forEach((col: any) => generateModel(col.list))
+          list[index].columns.forEach((row: any) => row.forEach((col: any) => generateModel(col.list)))
         } else {
           if (props.value && Object.keys(props.value).includes(model)) {
             state.model[model] = [props.value[model] ?? null]
@@ -176,7 +184,7 @@ export default defineComponent({
     const generateOptions = (list: any[]) => {
       list.forEach(item => {
         if (item.type === 'grid') {
-          item.columns.forEach((col: any) => generateOptions(col.list))
+          item.columns.forEach((row: any) => row.forEach((col: any) => generateOptions(col.list)))
         } else {
           if (item.options.remote && item.options.remoteFunc) {
             fetch(item.options.remoteFunc)
@@ -204,7 +212,7 @@ export default defineComponent({
 
       const colT = colMap[item.key]
 
-      item.columns.push(...colT.columns.map((col: any) => {
+      const copyData = colT.columns[0].map((col: any) => {
         return {
           ...col,
           list: col.list.map((v: any) => {
@@ -217,7 +225,9 @@ export default defineComponent({
             }
           })
         }
-      }))
+      })
+
+      item.columns.push(copyData)
 
       generateModel(state.widgetForm.list)
       generateOptions(state.widgetForm.list)
@@ -261,18 +271,19 @@ export default defineComponent({
 
       list.forEach((item: any) => {
         if (item.type === 'grid') {
-          model[item.model] = item.columns.map((v: any) => {
-            const rowModel = v.list.map((row: any) => {
-              const model:any = {}
-              if (row.model.includes('/')) {
-                const key = row.model.split('/')[1]
-                model[key] = state.model[row.model]
-              } else {
-                model[row.model] = state.model[row.model]
-              }
-              return model
+          model[item.model] = item.columns.map((row: any) => {
+            return row.map((col: any) => {
+              const rowModel:any = {}
+              col.list.forEach((v: any) => {
+                if (v.model.includes('/')) {
+                  const key = v.model.split('/')[1]
+                  rowModel[key] = state.model[v.model]
+                } else {
+                  rowModel[v.model] = state.model[v.model]
+                }
+              })
+              return rowModel
             })
-            return rowModel
           })
         } else {
           model[item.model] = state.model[item.model]

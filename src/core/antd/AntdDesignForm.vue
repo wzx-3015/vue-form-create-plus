@@ -1,10 +1,3 @@
-<!--
- * @Description: 请输入当前文件描述
- * @Author: @Xin (834529118@qq.com)
- * @Date: 2021-06-21 18:29:36
- * @LastEditTime: 2021-06-22 14:08:45
- * @LastEditors: @Xin (834529118@qq.com)
--->
 <template>
   <div class="fc-style">
     <a-layout class="fc-container">

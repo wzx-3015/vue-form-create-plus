@@ -194,7 +194,6 @@ export default defineComponent({
   emits: ['update:widgetForm', 'update:widgetFormSelect'],
   setup(props, context) {
     const handleItemClick = (row: any) => {
-      console.log(row)
       context.emit('update:widgetFormSelect', row)
     }
 
