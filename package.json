@@ -4,7 +4,7 @@
   "version": "1.2.2",
   "main": "dist/formCreate.umd.min.js",
   "types": "src/index.d.ts",
-  "homepage": "https://github.com/fuchengwei/vue-form-create",
+  "homepage": "https://github.com/wzx-3015/vue-form-create-puls",
   "author": {
     "name": "fuchengwei"
   },
@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com:fuchengwei/vue-form-create"
+    "url": "git+https://github.com/wzx-3015/vue-form-create-puls.git"
   },
   "files": [
     "dist/*",
@@ -31,6 +31,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
     "ace-builds": "^1.4.12",
     "ant-design-vue": "^2.1.0",
     "core-js": "^3.6.5",

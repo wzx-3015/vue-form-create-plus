@@ -1,3 +1,10 @@
+<!--
+ * @Description: 请输入当前文件描述
+ * @Author: @Xin (834529118@qq.com)
+ * @Date: 2021-06-21 18:29:36
+ * @LastEditTime: 2021-06-22 11:39:24
+ * @LastEditors: @Xin (834529118@qq.com)
+-->
 <template>
   <div class="fc-style">
     <a-form
@@ -18,23 +25,41 @@
             :justify="element.options.justify"
             :align="element.options.align"
           >
-          <!-- {{element.columns}} -->
             <a-col
               v-for="(col, colIndex) of element.columns"
               :key="colIndex"
               :span="col.span ?? 0"
+              :class="{
+                'custom-group': element.dynamic
+              }"
             >
-              <AntdGenerateFormItem
-                v-for="colItem of col.list"
-                v-model:model="model"
-                :key="colItem.key"
-                :element="colItem"
-                :config="data.config"
-                :disabled="disabled"
-              />
+              <div class="group-content">
+                <AntdGenerateFormItem
+                  v-for="colItem of col.list"
+                  v-model:model="model"
+                  :key="colItem.key"
+                  :element="colItem"
+                  :config="data.config"
+                  :disabled="disabled"
+                />
+              </div>
+              <div class="group-operation" v-if="element.dynamic && element.columns.length > 1">
+                <a-button
+                  shape="circle"
+                  type="dashed"
+                  :disabled="colIndex === 0"
+                  @click="handleReomveGroup(index, colIndex)"
+                >
+                  <template #icon>
+                    <MinusOutlined />
+                  </template>
+                </a-button>
+              </div>
             </a-col>
-            <a-button v-if="element.dynamic" type="dashed"  @click="handleAdd(element)">
-              增加
+            <a-button v-if="element.dynamic" type="dashed" block @click="handleAdd(element)">
+              <template #icon>
+                <PlusOutlined />
+              </template>
             </a-button>
           </a-row>
         </template>
@@ -53,6 +78,7 @@
 </template>
 
 <script lang="ts">
+import { PlusOutlined, MinusOutlined } from '@ant-design/icons-vue'
 import { v4 } from 'uuid'
 import { defineComponent, onMounted, reactive, toRefs, watch } from 'vue'
 import { message } from 'ant-design-vue'
@@ -62,7 +88,9 @@ import { antd } from '@/config'
 export default defineComponent({
   name: 'AntdGenerateForm',
   components: {
-    AntdGenerateFormItem
+    AntdGenerateFormItem,
+    PlusOutlined,
+    MinusOutlined
   },
   props: {
     data: {
@@ -195,6 +223,16 @@ export default defineComponent({
       generateOptions(state.widgetForm.list)
     }
 
+    /**
+     * @description:  移除组数据组
+     * @param {number} index list数据索引
+     * @param {number} colIndex  行数据索引
+     * @return {*}
+     */
+    const handleReomveGroup = (index: number, colIndex: number) => {
+      state.widgetForm.list[index].columns.splice(colIndex, 1)
+    }
+
     watch(
       () => props.data,
       () => {
@@ -269,7 +307,8 @@ export default defineComponent({
       ...toRefs(state),
       getData,
       reset,
-      handleAdd
+      handleAdd,
+      handleReomveGroup
     }
   }
 })

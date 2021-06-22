@@ -2,7 +2,7 @@
  * @Description: 请输入当前文件描述
  * @Author: @Xin (834529118@qq.com)
  * @Date: 2021-06-18 10:40:14
- * @LastEditTime: 2021-06-21 15:59:16
+ * @LastEditTime: 2021-06-22 09:43:16
  * @LastEditors: @Xin (834529118@qq.com)
  */
 export interface Rules {

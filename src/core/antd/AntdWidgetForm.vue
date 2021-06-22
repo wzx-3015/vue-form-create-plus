@@ -108,7 +108,7 @@ import { v4 } from 'uuid'
 import AntdWidgetFormItem from './AntdWidgetFormItem.vue'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { WidgetForm } from '@/config/antd'
-import { rest } from 'lodash'
+// import { rest } from 'lodash'
 
 const handleListInsert = (key: string, list: any[], obj: any) => {
   const newList: any[] = []
