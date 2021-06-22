@@ -1,6 +1,14 @@
-# vue-form-create
+<!--
+ * @Description: 请输入当前文件描述
+ * @Author: @Xin (834529118@qq.com)
+ * @Date: 2021-06-21 18:29:37
+ * @LastEditTime: 2021-06-22 14:51:45
+ * @LastEditors: @Xin (834529118@qq.com)
+-->
+# vue-form-create-puls
 
-基于 Vue3.0 + TS 的自定义表单生成器。支持 npm 与 cdn 引入的方式。UI 库支持 ant-design-vue 与 element-plus。
+基于 vue-form-create 改造(业务需要)  目前只改造了antd版本
+Vue3.0 + TS 的自定义表单生成器。支持 npm 与 cdn 引入的方式。UI 库支持 ant-design-vue 与 element-plus。
 
 ![预览](https://ftp.bmp.ovh/imgs/2021/04/040c798b0dfe17f1.png)
 
@@ -12,6 +20,8 @@
 - 栅格布局
 - 生成 JSON
 - 生成代码
+- 栅格布局组拷贝
+- 动态添加元素
 
 ### 演示地址（github）
 
@@ -36,21 +46,21 @@
 **我们推荐使用 npm 或 yarn 的方式进行开发**，不仅可在开发环境轻松调试，也可放心地在生产环境打包部署使用，享受整个生态圈和工具链带来的诸多好处。
 
 ```shell
-$ npm install vue-form-create --save
+$ npm install vue-form-create-plus --save
 ```
 
 ```shell
-$ yarn add vue-form-create
+$ yarn add vue-form-create-plus
 ```
 
 ### 浏览器引入
 
 在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `formCreate`。
 
-我们在 npm 发布包内的 `vue-form-create/dist`提供了 `formCreate.common.js` `formCreate.umd.js` `formCreate.umd.min.js`。你也可以通过 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/vue-form-create/badge)](https://www.jsdelivr.com/package/npm/vue-form-create) 或 [UNPKG](https://unpkg.com/vue-form-create/dist/) 进行下载。
+<!-- 我们在 npm 发布包内的 `vue-form-create-plus/dist`提供了 `formCreate.common.js` `formCreate.umd.js` `formCreate.umd.min.js`。你也可以通过 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/vue-form-create/badge)](https://www.jsdelivr.com/package/npm/vue-form-create) 或 [UNPKG](https://unpkg.com/vue-form-create/dist/) 进行下载。 -->
 
 ```javascript
-<script src='https://unpkg.com/vue-form-create/dist/formCreate.umd.min.js'></script>
+<script src='https://unpkg.com/vue-form-create-plus/dist/formCreate.umd.min.js'></script>
 ```
 
 ### 注意
@@ -71,7 +81,7 @@ $ yarn add vue-form-create
      ElDesignForm,
      AntdGenerateForm,
      ElGenerateForm
-   } from 'vue-form-create'
+   } from 'vue-form-create-plus'
    ```
 
 ### 示例
@@ -82,7 +92,7 @@ $ yarn add vue-form-create
 import { createApp } from 'vue'
 import antd from 'ant-design-vue'
 import App from './App.vue'
-import DesignForm from 'vue-form-create'
+import DesignForm from 'vue-form-create-plus'
 import 'ant-design-vue/dist/antd.css'
 
 createApp(App)
@@ -108,7 +118,7 @@ createApp(App)
       <antd-design-form />
     </div>
     <script src="https://unpkg.com/vue@next/dist/vue.global.prod.js"></script>
-    <script src="https://unpkg.com/vue-form-create/dist/formCreate.umd.min.js"></script>
+    <script src="https://unpkg.com/vue-form-create-plus/dist/formCreate.umd.min.js"></script>
     <script src="https://unpkg.com/ace-builds/src-noconflict/ace.js"></script>
     <script src="https://unpkg.com/moment/moment.js"></script>
     <script src="https://unpkg.com/ant-design-vue@next/dist/antd.min.js"></script>
