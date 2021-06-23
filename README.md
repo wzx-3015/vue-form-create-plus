@@ -2,12 +2,13 @@
  * @Description: 请输入当前文件描述
  * @Author: @Xin (834529118@qq.com)
  * @Date: 2021-06-21 18:29:37
- * @LastEditTime: 2021-06-22 14:51:45
+ * @LastEditTime: 2021-06-23 15:03:53
  * @LastEditors: @Xin (834529118@qq.com)
 -->
-# vue-form-create-puls
+# vue-form-create-plus
 
 基于 vue-form-create 改造(业务需要)  目前只改造了antd版本
+
 Vue3.0 + TS 的自定义表单生成器。支持 npm 与 cdn 引入的方式。UI 库支持 ant-design-vue 与 element-plus。
 
 ![预览](https://ftp.bmp.ovh/imgs/2021/04/040c798b0dfe17f1.png)

@@ -1,10 +1,10 @@
 {
-  "name": "vue-form-create-puls",
+  "name": "vue-form-create-plus",
   "description": "一个基于Vue3.0 + TS 的表单设计器(更改版)",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "main": "dist/formCreate.umd.min.js",
   "types": "src/index.d.ts",
-  "homepage": "https://github.com/wzx-3015/vue-form-create-puls",
+  "homepage": "https://github.com/wzx-3015/vue-form-create-plus",
   "author": {
     "name": "wzx"
   },
@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wzx-3015/vue-form-create-puls.git"
+    "url": "git+https://github.com/wzx-3015/vue-form-create-plus.git"
   },
   "files": [
     "dist/*",
@@ -28,7 +28,8 @@
     "serve": "vue-cli-service serve ./example/main.ts --open",
     "build": "vue-cli-service build --target lib --name formCreate ./src/index.ts",
     "lint": "vue-cli-service lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "yarn build && npm publish"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
