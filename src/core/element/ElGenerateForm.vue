@@ -1,3 +1,10 @@
+<!--
+ * @Description: 请输入当前文件描述
+ * @Author: @Xin (834529118@qq.com)
+ * @Date: 2021-06-21 18:29:36
+ * @LastEditTime: 2021-06-22 17:45:56
+ * @LastEditors: @Xin (834529118@qq.com)
+-->
 <template>
   <div class="fc-style">
     <el-form
@@ -24,16 +31,34 @@
               v-for="(col, colIndex) of element.columns"
               :key="colIndex"
               :span="col.span ?? 0"
+              :class="{
+                'custom-group': element.dynamic
+              }"
             >
-              <ElGenerateFormItem
-                v-for="colItem of col.list"
-                v-model:model="model"
-                :key="colItem.key"
-                :element="colItem"
-                :config="data.config"
-                :disabled="disabled"
-              />
+              <div class="group-content">
+                <ElGenerateFormItem
+                  v-for="colItem of col.list"
+                  v-model:model="model"
+                  :key="colItem.key"
+                  :element="colItem"
+                  :config="data.config"
+                  :disabled="disabled"
+                />
+              </div>
             </el-col>
+            <div class="group-operation" v-if="element.dynamic && element.columns.length > 1">
+              <el-button icon="el-icon-minus" circle></el-button>
+              <!-- <a-button
+                shape="circle"
+                type="dashed"
+                :disabled="colIndex === 0"
+                @click="handleReomveGroup(index, colIndex)"
+              >
+                <template #icon>
+                  <MinusOutlined />
+                </template>
+              </a-button> -->
+            </div>
           </el-row>
         </template>
         <ElGenerateFormItem

@@ -1,3 +1,10 @@
+<!--
+ * @Description: 请输入当前文件描述
+ * @Author: @Xin (834529118@qq.com)
+ * @Date: 2021-06-21 18:29:36
+ * @LastEditTime: 2021-06-23 18:38:52
+ * @LastEditors: @Xin (834529118@qq.com)
+-->
 <template>
   <div class="fc-style">
     <a-layout class="fc-container">
@@ -341,7 +348,7 @@ export default defineComponent({
 </script>
 
 <style>
-/* .center-container, .fc-main, .demo-layout{
+.center-container, .fc-main, .demo-layout{
   height: 100%;
 }
 .center-container .btn-bar{
@@ -362,5 +369,5 @@ export default defineComponent({
 .widget-config-container{
   position: absolute !important;
   right: 0
-} */
+}
 </style>

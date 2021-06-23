@@ -1,8 +1,16 @@
 <template>
   <el-form label-position="top" size="small" v-if="data" :key="data.key">
-    <el-form-item label="字段标识" v-if="data.type !== 'grid'">
+    <el-form-item label="字段标识">
       <el-input v-model="data.model" />
     </el-form-item>
+
+    <a-form-item label="动态添加" v-if="dataHasKey('dynamic')">
+      <a-switch
+        checked-children="是"
+        un-checked-children="否"
+        v-model:checked="data.dynamic"
+      />
+    </a-form-item>
 
     <el-form-item label="标题" v-if="data.type !== 'grid'">
       <el-input v-model="data.label" />
@@ -574,6 +582,9 @@ export default defineComponent({
     const hasKey = (key: string) =>
       Object.keys(data.value.options).includes(key)
 
+    const dataHasKey = (key: string) =>
+      Object.keys(data.value).includes(key)
+
     const handleInsertColumn = () => {
       data.value.columns.push({
         span: 0,
@@ -626,6 +637,7 @@ export default defineComponent({
     return {
       data,
       hasKey,
+      dataHasKey,
       handleInsertColumn,
       handleInsertOption,
       handleOptionsRemove,

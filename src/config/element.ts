@@ -1,3 +1,10 @@
+/*
+ * @Description: 请输入当前文件描述
+ * @Author: @Xin (834529118@qq.com)
+ * @Date: 2021-06-21 18:29:36
+ * @LastEditTime: 2021-06-22 17:35:21
+ * @LastEditors: @Xin (834529118@qq.com)
+ */
 export interface Rules {
   trigger: string
   enum: string
@@ -345,6 +352,7 @@ export const layoutComponents = [
   {
     label: '栅格布局',
     type: 'grid',
+    dynamic: false,
     columns: [
       {
         span: 12,

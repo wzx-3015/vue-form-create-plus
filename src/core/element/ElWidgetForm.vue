@@ -1,3 +1,10 @@
+<!--
+ * @Description: 请输入当前文件描述
+ * @Author: @Xin (834529118@qq.com)
+ * @Date: 2021-06-21 18:29:36
+ * @LastEditTime: 2021-06-22 17:39:21
+ * @LastEditors: @Xin (834529118@qq.com)
+-->
 <template>
   <div class="widget-form-container">
     <div v-if="!widgetForm.list" class="form-empty">从左侧拖拽来添加字段</div>
@@ -68,6 +75,7 @@
                   class="widget-view-action widget-col-action"
                   v-if="widgetFormSelect?.key === element.key"
                 >
+                  <SvgIcon iconClass="copy" @click.stop="handleCopyClick(index, widgetForm.list)" />
                   <SvgIcon
                     iconClass="delete"
                     @click.stop="handleDeleteClick(index, widgetForm.list)"
@@ -144,6 +152,36 @@ const handleListDelete = (key: string, list: any[]) => {
   return newList
 }
 
+const handleCopyTypeItem = (item: any) => {
+  const typeList = ['radio', 'checkbox', 'select']
+  const key = v4().replaceAll('-', '')
+
+  const { type, rules, options, ...rest } = item
+
+  const defaultItem = {
+    ...rest,
+    type,
+    key,
+    model: `${type}_${key}`,
+    rules: rules ?? []
+  }
+
+  if (typeList.includes(type)) {
+    return {
+      ...defaultItem,
+      options: {
+        ...options,
+        options: options.options.map((item: any) => ({ ...item }))
+      }
+    }
+  }
+
+  return {
+    ...defaultItem,
+    options
+  }
+}
+
 export default defineComponent({
   name: 'ElWidgetForm',
   components: {
@@ -167,33 +205,29 @@ export default defineComponent({
     }
 
     const handleCopyClick = (index: number, list: any[]) => {
-      const key = v4().replaceAll('-', '')
       const oldList = JSON.parse(JSON.stringify(props.widgetForm.list))
 
-      let copyData = {
-        ...list[index],
-        key,
-        model: `${list[index].type}_${key}`,
-        rules: list[index].rules ?? []
-      }
+      const copyItem = list[index]
 
-      if (
-        list[index].type === 'radio' ||
-        list[index].type === 'checkbox' ||
-        list[index].type === 'select'
-      ) {
+      let copyData = handleCopyTypeItem(copyItem)
+
+      if (copyItem.type === 'grid') {
         copyData = {
           ...copyData,
-          options: {
-            ...copyData.options,
-            options: copyData.options.options.map((item: any) => ({ ...item }))
-          }
+          columns: copyItem.columns.map((column: any) => {
+            const columnList = JSON.parse(JSON.stringify(column.list))
+
+            return {
+              span: column.span,
+              list: columnList.map((v: any) => handleCopyTypeItem(v))
+            }
+          })
         }
       }
 
       context.emit('update:widgetForm', {
         ...props.widgetForm,
-        list: handleListInsert(list[index].key, oldList, copyData)
+        list: handleListInsert(copyItem.key, oldList, copyData)
       })
 
       context.emit('update:widgetFormSelect', copyData)
