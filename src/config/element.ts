@@ -2,7 +2,7 @@
  * @Description: 请输入当前文件描述
  * @Author: @Xin (834529118@qq.com)
  * @Date: 2021-06-21 18:29:36
- * @LastEditTime: 2021-06-22 17:35:21
+ * @LastEditTime: 2021-07-01 11:01:12
  * @LastEditors: @Xin (834529118@qq.com)
  */
 export interface Rules {
@@ -53,6 +53,7 @@ export const basicComponents = [
   {
     label: '单行文本',
     type: 'input',
+    dynamic: false,
     options: {
       width: '100%',
       defaultValue: '',
@@ -71,6 +72,7 @@ export const basicComponents = [
   {
     label: '密码框',
     type: 'password',
+    dynamic: false,
     options: {
       width: '100%',
       defaultValue: '',
@@ -90,6 +92,7 @@ export const basicComponents = [
   {
     label: '多行文本',
     type: 'textarea',
+    dynamic: false,
     options: {
       width: '100%',
       defaultValue: '',
@@ -107,6 +110,7 @@ export const basicComponents = [
   {
     label: '计数器',
     type: 'number',
+    dynamic: false,
     options: {
       width: '',
       defaultValue: 0,
@@ -120,6 +124,7 @@ export const basicComponents = [
   {
     label: '单选框组',
     type: 'radio',
+    dynamic: false,
     options: {
       defaultValue: '',
       width: '',
@@ -154,6 +159,7 @@ export const basicComponents = [
   {
     label: '多选框组',
     type: 'checkbox',
+    dynamic: false,
     options: {
       defaultValue: [],
       width: '',
@@ -188,6 +194,7 @@ export const basicComponents = [
   {
     label: '时间选择器',
     type: 'time',
+    dynamic: false,
     options: {
       defaultValue: '',
       width: '',
@@ -204,6 +211,7 @@ export const basicComponents = [
   {
     label: '日期选择器',
     type: 'date',
+    dynamic: false,
     options: {
       defaultValue: '',
       width: '',
@@ -230,6 +238,7 @@ export const basicComponents = [
   {
     label: '下拉选择框',
     type: 'select',
+    dynamic: false,
     options: {
       defaultValue: '',
       width: '200px',
@@ -267,6 +276,7 @@ export const basicComponents = [
   {
     label: '开关',
     type: 'switch',
+    dynamic: false,
     options: {
       defaultValue: false,
       disabled: false,
@@ -278,6 +288,7 @@ export const basicComponents = [
   {
     label: '滑块',
     type: 'slider',
+    dynamic: false,
     options: {
       defaultValue: 0,
       width: '',

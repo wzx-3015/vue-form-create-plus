@@ -2,7 +2,7 @@
  * @Description: 请输入当前文件描述
  * @Author: @Xin (834529118@qq.com)
  * @Date: 2021-06-18 10:40:14
- * @LastEditTime: 2021-06-22 11:39:32
+ * @LastEditTime: 2021-07-01 11:12:09
  * @LastEditors: @Xin (834529118@qq.com)
 -->
 <template>
@@ -314,7 +314,6 @@ export default defineComponent({
   },
   emits: ['update:model', 'update:widgetForm'],
   setup(props, context) {
-    console.log('创建context', props.model)
     const data = computed({
       get: () => props.model[props.element.model],
       set: val => {
@@ -328,7 +327,7 @@ export default defineComponent({
       option.label.toLowerCase().includes(input)
 
     const handleUploadChange = ({ fileList }: any) => {
-      data.value = fileList
+      data.value[0] = fileList
     }
 
     const handleAdd = () => {
