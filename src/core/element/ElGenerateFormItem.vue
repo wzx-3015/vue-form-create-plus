@@ -2,7 +2,7 @@
  * @Description: 请输入当前文件描述
  * @Author: @Xin (834529118@qq.com)
  * @Date: 2021-06-21 18:29:36
- * @LastEditTime: 2021-07-01 11:19:09
+ * @LastEditTime: 2021-07-01 11:21:34
  * @LastEditors: @Xin (834529118@qq.com)
 -->
 <template>
@@ -330,7 +330,6 @@ export default defineComponent({
       option.label.toLowerCase().includes(input)
 
     const handleUploadSuccess = (_res: any, _file: any, fileList: any[]) => {
-      console.log('fileList', fileList)
       data.value[0] = fileList
     }
 
